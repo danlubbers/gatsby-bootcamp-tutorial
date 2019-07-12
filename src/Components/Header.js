@@ -1,14 +1,24 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 // import './Header.module.scss';
 
 // Using CSS Modules to Scope the styles to the specific component
 import HeaderStyles from './Header.module.scss';
 
 const Header = () => {
+    const data = useStaticQuery(graphql`
+        query {
+            site {
+                siteMetadata {
+                    title
+                }
+            }
+        }
+    `);
+    
     return (
         <header className={HeaderStyles.header}>
-            <h1><Link className={HeaderStyles.title} to="/">Dan Lubbers</Link></h1>
+            <h1><Link className={HeaderStyles.title} to="/">{data.site.siteMetadata.title}</Link></h1>
             <nav>
                 <ul className={HeaderStyles.navList}>
                     <Link className={HeaderStyles.navItem} activeClassName={HeaderStyles.activeNavItem} to="/"><li>Home</li></Link>
