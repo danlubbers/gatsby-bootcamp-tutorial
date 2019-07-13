@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Layout from '../Components/Layout';
 import blogStyles from '../pages/blog.module.scss';
+import Head from '../Components/Head';
 
 const BlogPage = () => {
     // Pulling in query from Contentful API
@@ -42,6 +43,7 @@ const BlogPage = () => {
 
     return (
         <Layout>
+            <Head title="blog"/>
         <h1>Blog</h1>
         <ol className={blogStyles.posts}>  
                 {data.allContentfulBlogPost.edges.map((e, i) => {
